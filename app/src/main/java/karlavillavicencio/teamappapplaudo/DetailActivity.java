@@ -2,6 +2,7 @@ package karlavillavicencio.teamappapplaudo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,8 @@ public class DetailActivity extends AppCompatActivity {
         Log.d("posicion", String.valueOf(info.position));
         txtTeam.setText(info.name);
         txtDescription.setText(description[info.position]);
+        txtDescription.setMovementMethod(new ScrollingMovementMethod());
         imageView.setImageResource(image[info.position]);
+
     }
 }
