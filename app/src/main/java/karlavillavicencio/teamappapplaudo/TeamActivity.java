@@ -1,5 +1,6 @@
 package karlavillavicencio.teamappapplaudo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.Toast;
 
 public class TeamActivity extends AppCompatActivity {
     private String team[]=new String[]{"Arsenal","Liverpool","ManchesterCity","Chelsea","ManchesterUnited", "Crystal Palace","RealMadrid"};
-
+    private  String address[]= new  String[]{"Holloway, Londres,Inglaterra","Liverpool, Inglaterra","Mánchester, Inglaterra ","Fulham, Londres"," Mánchester, Inglaterra","Sur de la ciudad de Londres, Inglaterra","Madrid, España"};
     private Integer image[] = {
             R.drawable.arsenal,
             R.drawable.liverpool,
@@ -27,14 +28,21 @@ public class TeamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
 
-        TeamListAdapter adapter=new TeamListAdapter(this,team,image);
+        TeamListAdapter adapter=new TeamListAdapter(this,team,image,address);
         teamList=(ListView)findViewById(R.id.teamList);
         teamList.setAdapter(adapter);
         teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem=team[+position];
-                Toast.makeText(getApplicationContext(), selectedItem, Toast.LENGTH_SHORT).show();
+                TeamClass info=new TeamClass();
+                info.name=selectedItem;
+                info.position=position;
+                Intent intent=new Intent(TeamActivity.this,DetailActivity.class);
+                intent.putExtra("info",info);
+                startActivity(intent);
+
+               // Toast.makeText(getApplicationContext(), selectedItem, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -14,12 +14,14 @@ public class TeamListAdapter extends ArrayAdapter<String> {
     private final Activity context; //activity que contiene la lista
     private final String[] team;    //lista de equipos
     private final Integer[] image; // logotipos de equipo
+    private final String[] address; //direccin del equipo
 
-    public TeamListAdapter(Activity context, String[]team, Integer[] image) {
+    public TeamListAdapter(Activity context, String[]team, Integer[] image,String[]address) {
         super(context, R.layout.list_element, team);
         this.context=context;
         this.team=team;
         this.image=image;
+        this.address=address;
     }
 
     public View getView(int posicion,View view, ViewGroup parent){
@@ -33,7 +35,7 @@ public class TeamListAdapter extends ArrayAdapter<String> {
 
         txtTitle.setText(team[posicion]);
         imageView.setImageResource(image[posicion]);
-        txtDescripcion.setText(team[posicion]);
+        txtDescripcion.setText(address[posicion]);
 
         return rowView;
     }

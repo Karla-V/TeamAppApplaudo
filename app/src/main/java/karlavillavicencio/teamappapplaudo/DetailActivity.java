@@ -1,0 +1,43 @@
+package karlavillavicencio.teamappapplaudo;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class DetailActivity extends AppCompatActivity {
+    String description[]=new String[]{"Juega en la máxima categoría del fútbol de ese país, la Premier League. Uno de los más laureados del fútbol inglés, ha ganado 43 títulos en su país, incluyendo 13 campeonatos de liga y un récord de 13 Copas de Inglaterra; también ha ganado dos títulos internacionales",
+    "Es el club inglés con mayor número de títulos internacionales, con cinco Copas de Europa, tres Copas de la UEFA y tres Supercopas de Europa. A nivel nacional, ha ganado dieciocho títulos de liga, siete FA Cups, ocho Copas de la Liga —siendo el equipo que más ha ganado dicha competición— y quince Community Shields, sumando más de sesenta títulos oficiales.",
+    "Fue fundado en 1880 bajo el nombre de St. Mark's (West Gorton), luego pasó a llamarse Ardwick Association Football Club en 1887 y finalmente, el 13 de abril de 1894, se convirtió en el Manchester City.",
+    "Fundado el 10 de marzo de 1905, el club se mantuvo la mayor parte de su historia en la máxima categoría del fútbol británico. Su estadio es el Stamford Bridge, el cual tiene una capacidad para 41 837 espectadores",
+    "A nivel nacional Manchester United ha obtenido un récord de 20 títulos de liga, 12 FA Cup y 20 Supercopas de Inglaterra. A lo anterior se suman 3 Copas de Europa, una Recopa de Europa, una Copa de la UEFA, una Copa Intercontinental y una Copa Mundial de Clubes de la FIFA",
+    "Durante la temporada 2012-13 de la Football League Championship (Segunda División Del Fútbol Inglés), el Palace terminó quinto y ganó el ascenso a la Premier League a través de los play-offs.",
+    "Es una de las entidades más laureadas y reconocidas del mundo en ambas disciplinas, y ha sido galardonado a nivel futbolístico nacional e internacional por la FIFA como el Mejor Club del siglo xx, y como el Mejor Club Europeo y Mundial del siglo xx por la Federación Internacional de Historia y Estadística de Fútbol (IFFHS)"
+    };
+    private Integer image[] = {
+            R.drawable.arsenal,
+            R.drawable.liverpool,
+            R.drawable.manchester_city,
+            R.drawable.chelsea,
+            R.drawable.manchester_united,
+            R.drawable.crystal_palace,
+            R.drawable.real_madrid
+    };
+    TeamClass info = new TeamClass();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+        info=(TeamClass)getIntent().getExtras().getSerializable("info");
+
+        ImageView imageView = (ImageView) findViewById(R.id.logo);
+        TextView txtTeam = (TextView) findViewById(R.id.txtTeam);
+        TextView txtDescription=(TextView)findViewById(R.id.txtDescription);
+        Log.d("nombre",info.name);
+        Log.d("posicion", String.valueOf(info.position));
+        txtTeam.setText(info.name);
+        txtDescription.setText(description[info.position]);
+        imageView.setImageResource(image[info.position]);
+    }
+}

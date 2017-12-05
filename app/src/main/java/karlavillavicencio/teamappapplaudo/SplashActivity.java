@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 
 public class SplashActivity extends AppCompatActivity {
-    private int splashTime=1000;
+    private int splashTime=1000;// tiempo del splash screen en milisegundos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
