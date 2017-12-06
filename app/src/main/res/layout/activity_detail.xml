@@ -19,6 +19,12 @@
         android:layout_marginStart="8dp"
         android:id="@+id/upperLayout">
 
+        <view
+            class="com.google.android.youtube.player.YouTubePlayerView"
+            android:id="@+id/videoPlayerView"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

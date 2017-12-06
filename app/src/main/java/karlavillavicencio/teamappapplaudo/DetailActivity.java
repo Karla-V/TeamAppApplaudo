@@ -7,7 +7,13 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DetailActivity extends AppCompatActivity {
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+public class DetailActivity extends YouTubeBaseActivity {
+
     String description[]=new String[]{"Juega en la máxima categoría del fútbol de ese país, la Premier League. Uno de los más laureados del fútbol inglés, ha ganado 43 títulos en su país, incluyendo 13 campeonatos de liga y un récord de 13 Copas de Inglaterra; también ha ganado dos títulos internacionales",
     "Es el club inglés con mayor número de títulos internacionales, con cinco Copas de Europa, tres Copas de la UEFA y tres Supercopas de Europa. A nivel nacional, ha ganado dieciocho títulos de liga, siete FA Cups, ocho Copas de la Liga —siendo el equipo que más ha ganado dicha competición— y quince Community Shields, sumando más de sesenta títulos oficiales.",
     "Fue fundado en 1880 bajo el nombre de St. Mark's (West Gorton), luego pasó a llamarse Ardwick Association Football Club en 1887 y finalmente, el 13 de abril de 1894, se convirtió en el Manchester City.",
@@ -25,11 +31,25 @@ public class DetailActivity extends AppCompatActivity {
             R.drawable.crystal_palace,
             R.drawable.real_madrid
     };
+
+    private  String video[]={
+            "oRNjTug7bnA",
+            "r5PpG2pmWDc",
+            "R3DCV-KX0_U",
+            "TE1ZoBI1qj4",
+            "kkx499fmH0g",
+            "AUnWAL-ty4U",
+            "uhpzKrRmz0c"
+    };
     TeamClass info = new TeamClass();
+    YouTubePlayerView videoPlayerView;
+    YouTubePlayer.OnInitializedListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        
         info=(TeamClass)getIntent().getExtras().getSerializable("info");
 
         ImageView imageView = (ImageView) findViewById(R.id.logo);
@@ -41,6 +61,22 @@ public class DetailActivity extends AppCompatActivity {
         txtDescription.setText(description[info.position]);
         txtDescription.setMovementMethod(new ScrollingMovementMethod());
         imageView.setImageResource(image[info.position]);
+
+        videoPlayerView=(YouTubePlayerView) findViewById(R.id.videoPlayerView);
+        listener=new YouTubePlayer.OnInitializedListener(){
+
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo(video[info.position]);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+
+        videoPlayerView.initialize(VideoPlayerConfig.API_KEY, listener);
 
     }
 }
