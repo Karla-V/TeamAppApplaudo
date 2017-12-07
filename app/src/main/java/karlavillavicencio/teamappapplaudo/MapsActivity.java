@@ -17,7 +17,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    // los arreglos contienen la latitud, longitud y el texto del marcador para cada estadio de futboll, deben estar en el mismo orden
+    // segun la Team activity
     private double latitude[]=new double[]{
             51.5548885,
             53.430829482979604,
@@ -57,9 +58,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+        //obtener la posicion en el arreglo del equipo seleccionado
         selectedTeam=(Integer)getIntent().getExtras().getSerializable("position");
 
+        //validar servicios de google esten activos
         int status= GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
         if(status== ConnectionResult.SUCCESS)
         {
@@ -93,7 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         UiSettings uiSettings=mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
-        // Add a marker in Sydney and move the camera
+
+        // Segun el equipo seleccionado se asigna la posicion y el texto para el marcador
         LatLng sydney = new LatLng(latitude[selectedTeam], longitude[selectedTeam]);
         mMap.addMarker(new MarkerOptions().position(sydney).title(marker[selectedTeam]));
         float zoomLevel=16;

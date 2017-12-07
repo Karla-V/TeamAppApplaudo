@@ -27,13 +27,15 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
-
+        setTitle("Team List");
+        //inicializar el adaptador de la lista
         TeamListAdapter adapter=new TeamListAdapter(this,team,image,address);
         teamList=(ListView)findViewById(R.id.teamList);
         teamList.setAdapter(adapter);
         teamList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               //obtener la informacion del equipo seleccionado y enviarla al siguiente activity
                 String selectedItem=team[+position];
                 TeamClass info=new TeamClass();
                 info.name=selectedItem;

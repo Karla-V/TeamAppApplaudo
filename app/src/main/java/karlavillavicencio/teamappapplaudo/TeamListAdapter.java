@@ -14,7 +14,7 @@ public class TeamListAdapter extends ArrayAdapter<String> {
     private final Activity context; //activity que contiene la lista
     private final String[] team;    //lista de equipos
     private final Integer[] image; // logotipos de equipo
-    private final String[] address; //direccin del equipo
+    private final String[] address; //direccion del equipo
 
     public TeamListAdapter(Activity context, String[]team, Integer[] image,String[]address) {
         super(context, R.layout.list_element, team);
